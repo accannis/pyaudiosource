@@ -67,3 +67,15 @@ class AudioMeter:
         rms_db = 20 * np.log10(max(self.last_rms, 1e-10))
         peak_db = 20 * np.log10(max(self.current_peak, 1e-10))
         return rms_db, peak_db
+
+    def get_rms_db(self) -> float:
+        """Get RMS level in dB"""
+        if self.last_rms > 0:
+            return 20 * np.log10(self.last_rms)
+        return -60.0
+    
+    def get_peak_db(self) -> float:
+        """Get peak level in dB"""
+        if self.current_peak > 0:
+            return 20 * np.log10(self.current_peak)
+        return -60.0
